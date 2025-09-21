@@ -1,0 +1,76 @@
+# Функция для вычисления факториала числа
+def factorial(n):
+    if n < 0:
+        return "Факториал отрицательного числа не определен"
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+
+# Функция для поиска наибольшего числа из трех
+def max_of_three(numbers):
+    if len(numbers) != 3:
+        return "Аргумент должен быть кортежем из трех чисел"
+    return max(numbers)
+
+# Функция для расчета площади прямоугольного треугольника
+def triangle_area(cathetus_a, cathetus_b):
+    return (cathetus_a * cathetus_b) / 2
+
+# Функция для генерации текста с адресом суда
+def generate_court_header(defendant_data, case_number):
+    court_address = "В арбитражный суд города Москвы\n"
+    address = "Адрес: 115225, г. Москва, ул. Б. Тульская, 17\n"
+    
+    plaintiff = "[Ваше имя]\n[Ваш ИНН] ОГРНИП [Ваш СНИЛС]\nАдрес: [Ваш адрес]\n"
+    
+    defendant = f"Ответчик: {defendant_data['name']}\n"
+    defendant += f"{defendant_data['tin']} ОГРН {defendant_data['ogrn']}\n"
+    defendant += f"Адрес: {defendant_data['address']}\n"
+    
+    header = f"{court_address}{address}{plaintiff}{defendant}Номер дела {case_number}"
+    return header
+
+# Функция для генерации всех возможных вариантов шапки
+def generate_all_headers(defendants_list, case_number):
+    for defendant in defendants_list:
+        header = generate_court_header(defendant, case_number)
+        print(header)
+
+# Примеры использования функций
+if __name__ == "__main__":
+    # Пример 1: вычисление факториала
+    print(f"Факториал 5: {factorial(5)}")
+    
+    # Пример 2: нахождение максимального числа
+    print(f"Наибольшее число из (3, 7, 5): {max_of_three((3, 7, 5))}")
+    
+    # Пример 3: расчет площади треугольника
+    print(f"Площадь треугольника с катетами 3 и 4: {triangle_area(3, 4)}")
+    
+    # Пример 4: генерация шапки
+    defendant_data = {
+        "name": "ООО 'Кооператив Озеро'",
+        "tin": "ИНН 1231231231",
+        "ogrn": "[jg:ogrn_5]",
+        "address": "123534, г. Москва, ул. Водников, 13"
+    }
+    case_number = "А40-123456/2023"
+    print(generate_court_header(defendant_data, case_number))
+    
+    # Пример 5: генерация всех шапок
+    defendants_list = [
+        {
+            "name": "ООО 'Кооператив Озеро'",
+            "tin": "ИНН 1231231231",
+            "ogrn": "[jg:ogrn_5]",
+            "address": "123534, г. Москва, ул. Водников, 13"
+        },
+        {
+            "name": "ИП Иванов Иван Иванович",
+            "tin": "[jg:tin_6]",
+            "ogrn": "[jg:ogrn_6]",
+            "address": "123534, г. Москва, ул. Лесная, 5"
+        }
+    ]
+    generate_all_headers(defendants_list, case_number)
