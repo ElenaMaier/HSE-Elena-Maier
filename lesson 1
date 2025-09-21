@@ -1,1 +1,66 @@
+# Домашнее задание 1
+# Дисциплина: Наука о данных для юристов
+# Тема: Введение в Python
 
+# Задание 1: Работа с переменными
+# Создайте несколько переменных и выведите их на экран.
+
+name = "Иван"
+age = 25
+height = 1.75
+
+print("Имя:", name)
+print("Возраст:", age)
+print("Рост:", height)
+
+# Задание 2: Ввод данных от пользователя
+# Запросите у пользователя числа и строки и сохраните в переменные.
+
+user_name = input("Введите ваше имя: ")
+user_age = input("Введите ваш возраст: ")
+
+if user_age.isdigit():
+    user_age = int(user_age)
+else:
+    print("Возраст должен быть числом.")
+
+print("Ваше имя:", user_name)
+print("Ваш возраст:", user_age)
+
+# Задание 3: Использование функции id()
+# Наблюдение за адресами объектов в памяти.
+
+print("ID переменной name:", id(name))
+print("ID переменной age:", id(age))
+print("ID переменной height:", id(height))
+
+# Задание 4: Перевод времени из секунд в часы, минуты и секунды
+# Пользователь вводит время в секундах.
+
+total_seconds = input("Введите время в секундах: ")
+
+if total_seconds.isdigit():
+    total_seconds = int(total_seconds)
+    hours = total_seconds // 3600
+    minutes = (total_seconds % 3600) // 60
+    seconds = total_seconds % 60
+
+    print("Часы:", hours)
+    print("Минуты:", minutes)
+    print("Секунды:", seconds)
+else:
+    print("Введите корректное число секунд.")
+
+# Задание 5: Сумма чисел n + nn + nnn
+# Пользователь вводит число n (от 1 до 9).
+
+n = input("Введите число от 1 до 9: ")
+
+if n.isdigit() and 1 <= int(n) <= 9:
+    n = int(n)
+    nn = int(str(n) * 2)  # Превращаем n в nn
+    nnn = int(str(n) * 3)  # Превращаем n в nnn
+    result = n + nn + nnn
+    print("Сумма n + nn + nnn =", result)
+else:
+    print("Введите корректное число от 1 до 9.")
